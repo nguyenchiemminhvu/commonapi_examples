@@ -1,8 +1,8 @@
 - [Introduction](#introduction)
 - [Key Features](#key-features)
 - [Architecture](#architecture)
-- [Workflow In Programming](#workflow-in-programming)
 - [Installation](#installation)
+- [Workflow In Programming](#workflow-in-programming)
 - [Sample Codes](#sample-codes)
   - [Sync and Async APIs](#sync-and-async-apis)
     - [Define the Interface (CommonAPI IDL)](#define-the-interface-commonapi-idl)
@@ -60,18 +60,6 @@ The architecture of ```CommonAPI``` can be divided into several key components:
 
 ```Bindings```: Bindings are implementations of the ```CommonAPI``` runtime for specific communication protocols. For example, there are bindings for ```SOME/IP```, ```D-Bus```, etc.
 
-# Workflow In Programming
-
-```Define Interfaces```: Start by defining the interfaces using the ```CommonAPI IDL```. This includes specifying methods, properties, and events.
-
-```Generate Code```: Use the ```CommonAPI``` code generator to generate the C++ code from the IDL definitions. This will create the necessary proxy and stub classes.
-
-```Implement Services```: Implement the server-side logic by extending the generated stub classes. Similarly, implement the client-side logic using the generated proxy classes.
-
-```Configure Communication```: Configure the communication settings, such as the protocol to be used (e.g., ```SOME/IP```, ```D-Bus```) and any necessary parameters.
-
-```Deploy and Run```: Deploy the components to the target environment and run them. The CommonAPI runtime will handle the communication between the components.
-
 # Installation
 
 **Install Dependencies**
@@ -91,6 +79,18 @@ cmake ..
 make
 sudo make install
 ```
+
+# Workflow In Programming
+
+```Define Interfaces```: Start by defining the interfaces using the ```CommonAPI IDL```. This includes specifying methods, properties, and events.
+
+```Generate Code```: Use the ```CommonAPI``` code generator to generate the C++ code from the IDL definitions. This will create the necessary proxy and stub classes.
+
+```Implement Services```: Implement the server-side logic by extending the generated stub classes. Similarly, implement the client-side logic using the generated proxy classes.
+
+```Configure Communication```: Configure the communication settings, such as the protocol to be used (e.g., ```SOME/IP```, ```D-Bus```) and any necessary parameters.
+
+```Deploy and Run```: Deploy the components to the target environment and run them. The CommonAPI runtime will handle the communication between the components.
 
 # Sample Codes
 
