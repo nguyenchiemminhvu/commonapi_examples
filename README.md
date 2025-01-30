@@ -3,6 +3,15 @@
 - [Architecture](#architecture)
 - [Installation](#installation)
 - [Workflow In Programming](#workflow-in-programming)
+- [Franca IDL](#franca-idl)
+  - [Key Concepts](#key-concepts)
+    - [Interfaces](#interfaces)
+    - [Methods](#methods)
+    - [Broadcasts](#broadcasts)
+    - [Attributes](#attributes)
+  - [FIDL Data Types](#fidl-data-types)
+    - [Primitive Data Types](#primitive-data-types)
+    - [Complex Data Types](#complex-data-types)
 - [Sample Codes](#sample-codes)
   - [Sync and Async APIs](#sync-and-async-apis)
     - [Define the Interface (CommonAPI IDL)](#define-the-interface-commonapi-idl)
@@ -91,6 +100,227 @@ sudo make install
 ```Configure Communication```: Configure the communication settings, such as the protocol to be used (e.g., ```SOME/IP```, ```D-Bus```) and any necessary parameters.
 
 ```Deploy and Run```: Deploy the components to the target environment and run them. The CommonAPI runtime will handle the communication between the components.
+
+# Franca IDL
+
+```Franca IDL``` is a text-based language that describes how software components should interact.
+
+It defines interfaces, methods, attributes, and data types that components use to communicate.
+
+```Franca IDL``` is often used with ```CommonAPI```, which is a framework for ```C++``` that helps in creating these communication interfaces.
+
+Example:
+
+```
+struct Device {
+    String id
+    String name
+    Boolean isOn
+}
+
+enum DeviceType {
+    LIGHT,
+    THERMOSTAT,
+    CAMERA
+}
+
+struct TemperatureSettings {
+    Float currentTemperature
+    Float targetTemperature
+}
+
+interface SmartHome {
+    version { major 1 minor 0 }
+
+    method AddDevice {
+        in {
+            Device newDevice
+            DeviceType type
+        }
+        out {
+            Boolean success
+            String message
+        }
+    }
+
+    method ToggleDevice {
+        in {
+            String deviceId
+            Boolean turnOn
+        }
+        out {
+            Boolean success
+        }
+    }
+
+    method GetTemperatureSettings {
+        out {
+            TemperatureSettings settings
+        }
+    }
+
+    method SetTargetTemperature {
+        in {
+            Float targetTemperature
+        }
+        out {
+            Boolean success
+        }
+    }
+
+    attribute Array<Device> devices
+    attribute Float currentTemperature
+
+    broadcast DeviceToggled {
+        String deviceId
+        Boolean isOn
+    }
+
+    broadcast TemperatureChanged {
+        Float newTemperature
+    }
+}
+```
+
+## Key Concepts
+
+### Interfaces
+
+An interface in ```Franca IDL``` defines a set of methods, attributes, and broadcasts that a component provides. It acts as a contract or blueprint for communication between components.
+
+### Methods
+
+A method defines an action that one component can ask another to perform. It specifies input parameters (```in```) and output parameters (```out```).
+
+### Broadcasts
+
+A broadcast is a way for a component to send notifications to other components. It is like a one-way message that doesn’t expect a response.
+
+### Attributes
+
+An attribute is a data value that can be read or written by other components. It represents the state of a component.
+
+## FIDL Data Types
+
+```Franca IDL``` (Interface Definition Language) supports a variety of data types to define the structure of data that can be passed between components.
+
+### Primitive Data Types
+
+**Boolean**
+
+Represents true or false.
+
+Example:
+
+```
+Boolean isReady = true;
+```
+
+**Integer Types**
+
+```Int8```: 8-bit signed integer (range: -128 to 127).
+
+```Int16```: 16-bit signed integer (range: -32,768 to 32,767).
+
+```Int32```: 32-bit signed integer (range: -2,147,483,648 to 2,147,483,647).
+
+```Int64```: 64-bit signed integer (very large range).
+
+```UInt8```: 8-bit unsigned integer (range: 0 to 255).
+
+```UInt16```: 16-bit unsigned integer (range: 0 to 65,535).
+
+```UInt32```: 32-bit unsigned integer (range: 0 to 4,294,967,295).
+
+```UInt64```: 64-bit unsigned integer (very large range).
+
+**Floating-Point Types**
+
+```Float```: 32-bit floating-point number (for decimal values).
+
+```Double```: 64-bit floating-point number (for more precise decimal values).
+
+**String**
+
+Represents text data.
+
+Example:
+
+```
+String name = "John";
+```
+
+**Byte**
+
+Represents raw binary data (8-bit unsigned value).
+
+Example:
+
+```
+Byte data = 0xFF;
+```
+
+### Complex Data Types
+
+**Array**
+
+A collection of elements of the same type.
+
+Example:
+
+```
+Array<Int32> numbers = [1, 2, 3];
+```
+
+**Struct**
+
+A custom data type that groups multiple fields (like a record).
+
+Example:
+
+```
+struct Person {
+  String name
+  Int32 age
+}
+```
+
+**Enumeration (Enum)**
+
+A custom type that defines a set of named values.
+
+Example:
+
+```
+enum Color {
+  RED,
+  GREEN,
+  BLUE
+}
+```
+
+**Map**
+
+A collection of key-value pairs, where each key maps to a value.
+
+Example:
+
+```
+Map<String, Int32> ageMap = {"John": 25, "Alice": 30};
+```
+
+**Union**
+
+A type that can hold one of several different types at a time.
+
+Example:
+
+```
+union MyUnion {
+  Int32 number
+  String text
+}
+```
 
 # Sample Codes
 
