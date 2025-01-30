@@ -1,0 +1,11 @@
+package commonapi.example
+
+interface DemoBroadcast {
+    version { major 1 minor 0 }
+
+    broadcast broadcastMessage {
+        out {
+            String message
+        }
+    }
+}
