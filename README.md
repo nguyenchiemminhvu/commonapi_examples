@@ -107,28 +107,6 @@ https://github.com/COVESA/capicxx-someip-tools/releases
 
 https://github.com/COVESA/capicxx-core-tools/releases
 
-```
-mkdir cgen
-cd cgen/
-wget https://github.com/GENIVI/capicxx-core-tools/releases/download/3.1.12.2/commonapi-generator.zip
-unzip commonapi-generator.zip -d commonapi-generator
-chmod +x ./commonapi-generator/commonapi-generator-linux-x86_64
-
-wget https://github.com/GENIVI/capicxx-someip-tools/releases/download/3.2.0.1/commonapi_someip_generator.zip
-unzip commonapi_someip_generator.zip -d commonapi_someip_generator
-chmod +x ./commonapi_someip_generator/commonapi-someip-generator-linux-x86_64
-```
-
-Source code generation example:
-
-```
-sudo ./cgen/commonapi-generator/commonapi-generator-linux-x86_64 -sk ./fidl/abstraction/*.fidl
-
-sudo ./cgen/commonapi_someip_generator/commonapi-someip-generator-linux-x86_64 -ll verbose ./fidl/abstraction/*.fdepl
-
-sudo ./cgen/commonapi_someip_generator/commonapi-someip-generator-linux-x86_64 -ll verbose ./fidl/instances/abstraction/de.bmw.infotainment.abstraction.swio.fdepl
-```
-
 # Workflow In Programming
 
 ```Define Interfaces```: Start by defining the interfaces using the ```CommonAPI IDL```. This includes specifying methods, properties, and events.
