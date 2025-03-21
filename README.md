@@ -81,13 +81,33 @@ sudo apt install -y cmake g++ libboost-all-dev openjdk-11-jdk python3
 **Build and install CommonAPI runtime**
 
 ```
-git clone --recursive https://github.com/GENIVI/capicxx-core-runtime.git
+git clone git@github.com:COVESA/capicxx-core-runtime.git
 cd capicxx-core-runtime
-mkdir build && cd build
-cmake ..
+mkdir build
+cd build
+cmake -D CMAKE_INSTALL_PREFIX=/usr ..
 make
 sudo make install
 ```
+
+```
+git clone git@github.com:COVESA/capicxx-someip-runtime.git
+
+cd capicxx-someip-runtime
+mkdir build
+cd build
+cmake -D CMAKE_INSTALL_PREFIX=/usr ..
+make
+sudo make install
+```
+
+**Download SOME/IP tools**
+
+https://github.com/COVESA/capicxx-someip-tools/releases
+
+**Download CommonAPI core tools**
+
+https://github.com/COVESA/capicxx-core-tools/releases
 
 # Workflow In Programming
 
