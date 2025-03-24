@@ -85,7 +85,7 @@ git clone git@github.com:COVESA/capicxx-core-runtime.git
 cd capicxx-core-runtime
 mkdir build
 cd build
-cmake -D CMAKE_INSTALL_PREFIX=/usr ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr ..
 make
 sudo make install
 ```
@@ -96,7 +96,7 @@ git clone git@github.com:COVESA/capicxx-someip-runtime.git
 cd capicxx-someip-runtime
 mkdir build
 cd build
-cmake -D CMAKE_INSTALL_PREFIX=/usr ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_PREFIX_PATH=/usr ..
 make
 sudo make install
 ```
